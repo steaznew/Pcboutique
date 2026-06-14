@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZ NEW PRO — PC portables, consommables & accessoires</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EFF3FA;
+    --surface: #FFFFFF;
+    --navy: #102A56;
+    --navy-2: #1B3F7A;
+    --blue: #2D7DE0;
+    --red: #E0383B;
+    --text: #16213E;
+    --muted: #6E7C99;
+    --line: #E0E6F1;
+    --radius: 12px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, .brand-name{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+  a{ color: inherit; text-decoration: none; }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo{ display: flex; align-items: center; gap: 12px; }
+  .logo-mark{
+    width: 46px; height: 46px;
+    background: var(--navy);
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .logo-mark::after{
+    content: "";
+    position: absolute;
+    right: -10px; bottom: -10px;
+    width: 26px; height: 26px;
+    background: var(--red);
+    transform: rotate(45deg);
+  }
+  .logo-mark span{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.1rem;
+    z-index: 1;
+    letter-spacing: -0.02em;
+  }
+  .logo-text .brand-name{ font-size: 1.15rem; line-height: 1.1; color: var(--navy); }
+  .logo-text .tagline{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  nav.cats{ display: flex; gap: 24px; font-size: 0.92rem; color: var(--muted); }
+  nav.cats a{ transition: color .15s ease; font-weight: 500; }
+  nav.cats a:hover, nav.cats a:focus-visible{ color: var(--blue); }
+
+  .cart-pill{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--navy);
+    background: var(--surface);
+    white-space: nowrap;
+  }
+  .cart-dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+
+  /* ---------- Hero banner ---------- */
+  .hero-banner{
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
+  .hero-banner::after{
+    content: "";
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 420px; height: 420px;
+    background: var(--red);
+    opacity: 0.12;
+    border-radius: 50%;
+  }
+  .hero-inner{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #9FC1FF;
+    margin-bottom: 14px;
+  }
+  .hero-inner h1{
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.12;
+    margin-bottom: 10px;
+  }
+  .hero-inner h1 .accent{ color: var(--red); }
+  .hero-sub{
+    font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+    color: #C7D6F2;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .stars{
+    color: var(--red);
+    font-size: 0.9rem;
+    letter-spacing: 0.4em;
+    margin-bottom: 36px;
+  }
+
+  .badges{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 760px;
+  }
+  .badge{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+  .badge-icon{
+    width: 30px; height: 30px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .badge-icon svg{ width: 16px; height: 16px; stroke: #fff; }
+
+  /* ---------- Sections ---------- */
+  section{ max-width: 1180px; margin: 0 auto; padding: 56px 24px; }
+
+  .section-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 16px;
+  }
+  .section-head h2{ font-size: 1.8rem; color: var(--navy); }
+  .section-head .count{ font-family: 'IBM Plex Mono', monospace; color: var(--muted); font-size: 0.85rem; }
+
+  /* ---------- Laptop cards (catalogue style) ---------- */
+  .laptop-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .laptop-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .laptop-card:hover{ transform: translateY(-4px); box-shadow: 0 12px 28px rgba(16,42,86,0.10); }
+
+  .laptop-card .brand-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .laptop-card .brand-name-tag{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .laptop-card .model-pill{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    padding: 5px 10px;
+    border-radius: 999px;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .laptop-card[data-brand="hp"] .brand-name-tag{ color: #0F6FC5; }
+  .laptop-card[data-brand="hp"] .model-pill{ background: #0F6FC5; }
+  .laptop-card[data-brand="dell"] .brand-name-tag{ color: #2D9CDB; }
+  .laptop-card[data-brand="dell"] .model-pill{ background: #2D9CDB; }
+  .laptop-card[data-brand="lenovo"] .brand-name-tag{ color: var(--red); }
+  .laptop-card[data-brand="lenovo"] .model-pill{ background: var(--red); }
+
+  .screen{
+    margin: 16px;
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+    position: relative;
+    overflow: hidden;
+  }
+  .laptop-card[data-brand="hp"] .screen{ background: radial-gradient(circle at 30% 30%, #3a8ee0, #0b1f44); }
+  .laptop-card[data-brand="dell"] .screen{ background: linear-gradient(135deg, #0b2a45, #1f5c84, #6fb7dd); }
+  .laptop-card[data-brand="lenovo"] .screen{ background: linear-gradient(135deg, #2a0b32, #7a1f3f, #e0383b); }
+  .screen .base{
+    position: absolute;
+    bottom: 0; left: 8%; right: 8%;
+    height: 10%;
+    background: rgba(0,0,0,0.25);
+    border-radius: 0 0 4px 4px;
+  }
+
+  .config-bar{
+    margin: 0 16px;
+    border-radius: 6px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: #fff;
+    padding: 8px 0;
+    text-transform: uppercase;
+  }
+  .laptop-card[data-brand="hp"] .config-bar{ background: #0F6FC5; }
+  .laptop-card[data-brand="dell"] .config-bar{ background: #2D9CDB; }
+  .laptop-card[data-brand="lenovo"] .config-bar{ background: var(--red); }
+
+  .specs-list{ padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .spec-row{ display: flex; align-items: flex-start; gap: 10px; }
+  .spec-icon{
+    width: 30px; height: 30px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .spec-icon svg{ width: 16px; height: 16px; stroke: var(--navy); fill: none; stroke-width: 1.6; }
+  .spec-text .label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .spec-text .value{ font-size: 0.92rem; font-weight: 500; }
+
+  .laptop-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 18px;
+    border-top: 1px solid var(--line);
+    margin-top: auto;
+  }
+  .laptop-footer .price{ font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--navy); }
+  .laptop-footer .price small{ font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+
+  .add-btn{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    background: var(--navy);
+    color: #fff;
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  .add-btn:hover{ background: var(--blue); border-color: var(--blue); }
+  .add-btn:focus-visible{ outline: 2px solid var(--red); outline-offset: 2px; }
+  .add-btn.added{ background: #2DAA6F; border-color: #2DAA6F; }
+
+  /* ---------- Simple grid (consommables / accessoires) ---------- */
+  .filters{ display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .filter-btn{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  .filter-btn:hover{ color: var(--navy); border-color: var(--blue); }
+
+  .grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{ border-color: var(--blue); transform: translateY(-3px); }
+  .card-tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .card h3{ font-size: 1.02rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
+  .card .desc{ color: var(--muted); font-size: 0.86rem; flex: 1; }
+  .card-footer{ display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+  .card .price{ font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--navy); }
+
+  /* ---------- Footer ---------- */
+  footer{ background: var(--navy); color: #fff; }
+  .footer-top{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .footer-item{ display: flex; align-items: center; gap: 12px; }
+  .footer-item .ficon{
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .footer-item .ficon svg{ width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 1.6; }
+  .footer-item .flabel{ font-size: 0.85rem; }
+  .footer-item .fvalue{ font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; }
+  .footer-item .flabel small{ display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: #9FC1FF; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .footer-bottom{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.82rem;
+    color: #B9CBEF;
+  }
+  .footer-bottom .brand-name{ color: #fff; font-size: 1.05rem; }
+
+  @media (max-width: 800px){
+    nav.cats{ display: none; }
+    .hero-inner{ padding: 48px 24px 60px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark"><span>AZ</span></div>
+      <div class="logo-text">
+        <div class="brand-name">AZ NEW PRO</div>
+        <div class="tagline">La technologie à votre portée</div>
+      </div>
+    </div>
+    <nav class="cats">
+      <a href="#portables">PC portables</a>
+      <a href="#consommables">Consommables</a>
+      <a href="#accessoires">Accessoires</a>
+    </nav>
+    <div class="cart-pill">
+      <span class="cart-dot"></span>
+      <span id="cartCount">0</span> article(s) — <span id="cartTotal">0 DH</span>
+    </div>
+  </div>
+</header>
+
+<div class="hero-banner">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Catalogue · Stock disponible</div>
+    <h1>PC portables, consommables<br>& <span class="accent">accessoires</span></h1>
+    <div class="hero-sub">La performance à votre service</div>
+    <div class="stars">★ ★ ★</div>
+    <div class="badges">
+      <div class="badge">
+        <div class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        Produits 100% authentiques
+      </div>
+      <div class="badge">
+        <div class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
+        Garantie 12 mois
+      </div>
+      <div class="badge">
+        <div class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg></div>
+        Service après-vente assuré
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="portables">
+  <div class="section-head">
+    <h2>PC portables</h2>
+    <span class="count">3 modèles en stock</span>
+  </div>
+  <div class="laptop-grid" id="grid-portables"></div>
+</section>
+
+<section id="consommables">
+  <div class="section-head">
+    <h2>Consommables</h2>
+    <span class="count">encre, toner, câbles, batteries</span>
+  </div>
+  <div class="grid" id="grid-consommables"></div>
+</section>
+
+<section id="accessoires">
+  <div class="section-head">
+    <h2>Accessoires</h2>
+    <span class="count">claviers, souris, sacs, supports</span>
+  </div>
+  <div class="grid" id="grid-accessoires"></div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-item">
+      <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 16.92z"/></svg></div>
+      <div class="flabel">
+        <small>Pour plus d'informations</small>
+        <div class="fvalue">06 61 53 88 10</div>
+      </div>
+    </div>
+    <div class="footer-item">
+      <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div class="flabel">Livraison<br>rapide</div>
+    </div>
+    <div class="footer-item">
+      <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg></div>
+      <div class="flabel">Support<br>client</div>
+    </div>
+    <div class="footer-item">
+      <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
+      <div class="flabel">Garantie<br>12 mois</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="brand-name">AZ NEW PRO</div>
+    <div>Votre partenaire technologique au quotidien — © 2026 AZ NEW PRO</div>
+  </div>
+</footer>
+
+<script>
+  const ICONS = {
+    cpu: '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>',
+    screen: '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="1"/><path d="M8 21h8M12 17v4"/></svg>',
+    ram: '<svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="6" rx="1"/><path d="M7 9V6M11 9V6M15 9V6M19 9V6M7 18v-3M11 18v-3M15 18v-3"/></svg>',
+    ssd: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h4M7 13h10"/></svg>',
+  };
+
+  const laptops = [
+    {
+      brand: "hp", brandName: "HP", model: "HP 15s-fqXXXX",
+      specs: [
+        { icon: "cpu", label: "Processeur", value: "Intel® Core™ i5, 13ᵉ génération" },
+        { icon: "screen", label: "Écran", value: "15.6\" Full HD" },
+        { icon: "ram", label: "Mémoire RAM", value: "8 Go DDR4" },
+        { icon: "ssd", label: "Stockage", value: "512 Go SSD" },
+      ],
+      price: 5499,
+    },
+    {
+      brand: "dell", brandName: "DELL", model: "Dell Vostro 3520",
+      specs: [
+        { icon: "cpu", label: "Processeur", value: "Intel® Core™ i5, 13ᵉ génération" },
+        { icon: "screen", label: "Écran", value: "15.6\" Full HD" },
+        { icon: "ram", label: "Mémoire RAM", value: "8 Go DDR4" },
+        { icon: "ssd", label: "Stockage", value: "512 Go SSD" },
+      ],
+      price: 5799,
+    },
+    {
+      brand: "lenovo", brandName: "Lenovo", model: "Lenovo IdeaPad 1 15IAU7",
+      specs: [
+        { icon: "cpu", label: "Processeur", value: "Intel® Core™ i5, 13ᵉ génération" },
+        { icon: "screen", label: "Écran", value: "15.6\" Full HD" },
+        { icon: "ram", label: "Mémoire RAM", value: "8 Go DDR4" },
+        { icon: "ssd", label: "Stockage", value: "512 Go SSD" },
+      ],
+      price: 5299,
+    },
+  ];
+
+  const products = {
+    consommables: [
+      { ref: "AZ-CO-001", name: "Cartouche encre noire (compatible HP)", desc: "Rendement ~480 pages, compatible imprimantes HP courantes.", price: 150 },
+      { ref: "AZ-CO-002", name: "Toner laser Brother TN-2420", desc: "Toner d'origine, rendement ~3000 pages.", price: 380 },
+      { ref: "AZ-CO-003", name: "Pack 5 DVD-R 4,7 Go", desc: "Disques vierges enregistrables, boîtier inclus.", price: 60 },
+      { ref: "AZ-CO-004", name: "Batterie externe 20 000 mAh", desc: "Charge rapide, 2 ports USB + 1 USB-C.", price: 250 },
+      { ref: "AZ-CO-005", name: "Câble USB-C 2 m", desc: "Charge et transfert de données, gainage renforcé.", price: 60 },
+    ],
+    accessoires: [
+      { ref: "AZ-AC-001", name: "Clavier mécanique rétroéclairé", desc: "Switches rouges, rétroéclairage RGB, AZERTY.", price: 450 },
+      { ref: "AZ-AC-002", name: "Souris sans fil ergonomique", desc: "Capteur 1600 DPI, autonomie 18 mois sur pile.", price: 180 },
+      { ref: "AZ-AC-003", name: "Sac à dos PC 15,6\"", desc: "Compartiment rembourré, port USB intégré, étanche.", price: 250 },
+      { ref: "AZ-AC-004", name: "Hub USB-C 7-en-1", desc: "HDMI 4K, 3x USB 3.0, lecteur SD, charge PD.", price: 220 },
+      { ref: "AZ-AC-005", name: "Support ventilé pour PC portable", desc: "Inclinaison ajustable, ventilateur silencieux 140mm.", price: 150 },
+    ],
+  };
+
+  let cart = { count: 0, total: 0 };
+
+  function fmt(n){ return n.toLocaleString('fr-FR') + ' DH'; }
+
+  function bumpCart(price, btn){
+    cart.count += 1;
+    cart.total += price;
+    document.getElementById('cartCount').textContent = cart.count;
+    document.getElementById('cartTotal').textContent = fmt(cart.total);
+    const original = btn.textContent;
+    btn.textContent = 'Ajouté ✓';
+    btn.classList.add('added');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('added'); }, 900);
+  }
+
+  function renderLaptops(){
+    const grid = document.getElementById('grid-portables');
+    grid.innerHTML = laptops.map((l, i) => `
+      <div class="laptop-card" data-brand="${l.brand}">
+        <div class="brand-bar">
+          <span class="brand-name-tag">${l.brandName}</span>
+          <span class="model-pill">${l.model}</span>
+        </div>
+        <div class="screen"><div class="base"></div></div>
+        <div class="config-bar">Configuration</div>
+        <div class="specs-list">
+          ${l.specs.map(s => `
+            <div class="spec-row">
+              <div class="spec-icon">${ICONS[s.icon]}</div>
+              <div class="spec-text">
+                <div class="label">${s.label}</div>
+                <div class="value">${s.value}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="laptop-footer">
+          <span class="price">${fmt(l.price)}</span>
+          <button class="add-btn" data-id="laptop-${i}" data-price="${l.price}">Ajouter</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderGrid(containerId, items){
+    const grid = document.getElementById(containerId);
+    grid.innerHTML = items.map((p, i) => `
+      <div class="card">
+        <div class="card-tag mono">${p.ref}</div>
+        <h3>${p.name}</h3>
+        <p class="desc">${p.desc}</p>
+        <div class="card-footer">
+          <span class="price">${fmt(p.price)}</span>
+          <button class="add-btn" data-id="${containerId}-${i}" data-price="${p.price}">Ajouter</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  renderLaptops();
+  renderGrid('grid-consommables', products.consommables);
+  renderGrid('grid-accessoires', products.accessoires);
+
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => bumpCart(parseFloat(btn.dataset.price), btn));
+  });
+</script>
+
+</body>
+</html>
